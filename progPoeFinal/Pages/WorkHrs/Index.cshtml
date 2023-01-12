@@ -1,0 +1,45 @@
+﻿@page
+@model progPoeFinal.Pages.WorkHrs.IndexModel
+@{
+    ViewData["Title"] = "YOUR HOURS-WORKED";
+}
+<h2>@ViewData["Title"]</h2><br />
+
+
+@*GET USER-ID FOR LINK*@
+@if (Model.userID.Length > 0)
+{
+    <a class='btn btn-primary btn-sm' href="/WorkHrs/Create?id=@Model.userID">Add & Calc. Work-Hours</a>
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Module Name</th>
+            <th>Hours-Spent</th>       
+            <th>Date</th>
+            <th>SelfStudy-Hrs</th>
+            <th>Hrs-Remaining</th>
+         </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.listWorkHrs)
+        {
+            var calc = item.SelfStudyHrs - item.HoursSpent;
+            <tr>
+                <td>@item.ModuleName</td>
+                <td>@item.HoursSpent</td>
+                <td>@item.Date</td>              
+                <td>@item.SelfStudyHrs</td>
+                <td>@calc</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="row mb-3">
+    <div class="offset-sm-3 col-sm-5 d-grid">
+        <br/><br/>
+        <a class="btn btn-outline-primary" role="button" href="/Modules/Index?id=@Request.Query["id"]">Back</a>
+    </div>
+</div>

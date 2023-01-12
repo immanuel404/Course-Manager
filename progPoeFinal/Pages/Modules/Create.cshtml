@@ -1,0 +1,83 @@
+﻿@page
+@model progPoeFinal.Pages.Modules.CreateModel
+@{
+    ViewData["Title"] = "ADD A MODULE";
+}
+<h2>@ViewData["Title"]</h2><br />
+
+
+@*OUTPUT MESSAGE*@
+@if (Model.Message.Length > 0)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <string>@Model.Message</string>
+        <button type="button" class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+    </div>
+}
+
+
+<form method="Post">
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Code:</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" name="code"/>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Name:</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" name="name"/>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Credits:</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" name="credits"/>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Class-Hours/Week:</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" name="classHrsWeek"/>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Num of Weeks:</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" name="numOfWeeks"/>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Start-Date:</label>
+        <div class="col-sm-5">
+            <input type="date" class="form-control" name="startDate"/>
+        </div>
+    </div>
+        <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Assign Study Day:</label>
+        <div class="col-sm-5">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Select Day of Week</label>
+              </div>
+              <select class="custom-select" id="inputGroupSelect01" name="assignDayOfWeek">
+                <option selected name="moduleName"></option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+              </select>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-5 d-grid">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <br/><br/>
+           <a class="btn btn-outline-primary" role="button" href="/Modules/Index?id=@Request.Query["id"]">Back</a>
+        </div>
+    </div>
+</form>

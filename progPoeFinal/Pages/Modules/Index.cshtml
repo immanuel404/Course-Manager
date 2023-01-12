@@ -1,0 +1,60 @@
+﻿@page
+@model progPoeFinal.Pages.Modules.IndexModel
+@{
+    ViewData["Title"] = "YOUR MODULES";
+}
+<h1>@ViewData["Title"]</h1><br />
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+    @*NOTIFY->PLANNED MODULE FOR DAY*@
+    @if (Model.moduleToday.Length > 0)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <string>Your Planned Module for Today is @Model.moduleToday</string>
+            <button type="button" class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        </div>
+    }
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <br/><br/>
+</div>
+
+
+@*GET USER-ID FOR LINK*@
+@if (Model.userID.Length > 0)
+{
+    <a class='btn btn-primary btn-sm' href="/Modules/Create?id=@Request.Query["id"]">Add New Module</a>
+    <a class='btn btn-primary btn-sm' href="/WorkHrs/Index?id=@Request.Query["id"]">View Work-Hours</a>
+    <br/><br/>
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Credits</th>       
+            <th>Class-Hrs/Week</th>
+            <th>Num of Weeks</th>
+            <th>Start-Date</th>
+            <th>Self-Study-Hrs</th>
+         </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.listModule)
+        {
+            <tr>
+                <td>@item.Code</td>
+                <td>@item.Name</td>
+                <td>@item.Credits</td>              
+                <td>@item.ClassHrsWeek</td>    
+                <td>@item.NumOfWeeks</td>
+                <td>@item.StartDate</td>
+                <td>@item.SelfStudyHrs</td>
+            </tr>
+        }
+    </tbody>
+</table>
